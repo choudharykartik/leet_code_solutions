@@ -12,9 +12,7 @@ class Solution(object):
         """
         if not root:
             return 0
-        else:
-            count=1
         l = self.maxDepth(root.left)
         r = self.maxDepth(root.right)
         
-        return count + max(l,r)
+        return 1 + max(l,r)

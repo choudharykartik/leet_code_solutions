@@ -30,10 +30,6 @@ class Solution(object):
                 break
         r_head = l.next
         l.next = None
-        print('first list')
-        self.printlist(head)
-        print('second list')
-        self.printlist(r_head)
         # reverse the right linklist 
         prev = None
         curr = r_head
@@ -42,8 +38,6 @@ class Solution(object):
             curr.next = prev
             prev = curr
             curr = temp
-        print('reversed head')
-        self.printlist(prev)
         left = head
         right = prev
         new_node = ListNode(0)
@@ -53,17 +47,13 @@ class Solution(object):
                 break
             if left:
                     curr.next = left
-                    print('left added')
                     left = left.next
                     curr = curr.next
                     curr.next = None
 
             if right:
                     curr.next = right
-                    print('right added')
                     right = right.next
                     curr = curr.next
                     curr.next = None
-        print('new list')
-        self.printlist(new_node)
         return new_node.next

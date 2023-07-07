@@ -1,0 +1,69 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    
+    def printlist(self,head):
+        curr = head
+        while curr:
+            print(curr.val)
+            curr = curr.next
+
+
+    def reorderList(self, head):
+        """
+        :type head: ListNode
+        :rtype: None Do not return anything, modify head in-place instead.
+        """
+        # define two pointers 
+        dummy = ListNode(0,head)
+        l,r = dummy,dummy
+        while r.next:
+            l = l.next
+            if r.next == None:
+                r = r.next
+            else:
+                r = r.next.next
+            if r == None:
+                break
+        r_head = l.next
+        l.next = None
+        print('first list')
+        self.printlist(head)
+        print('second list')
+        self.printlist(r_head)
+        # reverse the right linklist 
+        prev = None
+        curr = r_head
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        print('reversed head')
+        self.printlist(prev)
+        left = head
+        right = prev
+        new_node = ListNode(0)
+        curr = new_node
+        while  right or left :
+            if left == None and right == None:
+                break
+            if left:
+                    curr.next = left
+                    print('left added')
+                    left = left.next
+                    curr = curr.next
+                    curr.next = None
+
+            if right:
+                    curr.next = right
+                    print('right added')
+                    right = right.next
+                    curr = curr.next
+                    curr.next = None
+        print('new list')
+        self.printlist(new_node)
+        return new_node.next
